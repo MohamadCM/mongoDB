@@ -2,11 +2,11 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost:27017/';
 
 var userName = 'Mohamad';
-var friend = 'Mohamad';
+var friend = 'Mohamad2';
 
 var query = {userName: `${userName}`};
 
-var friendQuery = {$pull: {friends: {userName: `${friend}`}}};
+var friendQuery = {$pull: {friends: `${friend}`}};
 
 
 MongoClient.connect(url, function(err, db) {
@@ -14,8 +14,7 @@ MongoClient.connect(url, function(err, db) {
     var dbo = db.db('project');
     dbo.collection('user').findOne(query, function(err, res) {
         if (err) throw err;
-        console.log(res.friends);
-        if(res.friends.includes({userName: `${friend}`}))
+        if(res.friends.includes(`${friend}`))
         {
             MongoClient.connect(url, function(err, db) {
                 if (err) throw err;
@@ -27,9 +26,9 @@ MongoClient.connect(url, function(err, db) {
                     db.close();
                 });
             });
-            query = {userName: `${friend}`};
-            friendQuery = {$push: {friends: {userName: `${userName}`}}};
             MongoClient.connect(url, function(err, db) {
+                query = {userName: `${friend}`};
+                friendQuery = {$pull: {friends: `${friend}`}};
                 if (err) throw err;
                 var dbo = db.db('project');
                 dbo.collection('user').updateOne(query,friendQuery, function(err, res) {

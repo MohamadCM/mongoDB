@@ -14,7 +14,6 @@ MongoClient.connect(url, function(err, db) {
     var dbo = db.db('project');
     dbo.collection('user').findOne(query, function(err, res) {
         if (err) throw err;
-        console.log(res);
         if(!res.friends.includes(`${friend}`))
             {
                 console.log('Adding to friends!');
