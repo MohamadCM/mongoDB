@@ -1,8 +1,9 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/';
-
 var userName = 'Mohamad';
 var channelName = 'ch1';
+
+
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/';
 var query = {userName: `${userName}`};
 var channelQuery = {$addToSet: {channels: {name:`${channelName}`, messages:[], follower:[]}}};
 

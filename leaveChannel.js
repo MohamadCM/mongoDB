@@ -1,9 +1,9 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/';
-
 var channelName = 'ch1';
 
 var userName = 'Mohamad';
+
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/';
 var query = {userName: `${userName}`};
 var channelQuery = {$pull: {following: `${channelName}`}};
 

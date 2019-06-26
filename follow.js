@@ -1,9 +1,9 @@
+var channelName = 'ch1';
+var userName = 'Mohamad';
+
+
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost:27017/';
-
-var channelName = 'ch1';
-
-var userName = 'Mohamad';
 var query = {userName: `${userName}`};
 var channelQuery = {$addToSet: {following: `${channelName}`}};
 
@@ -12,6 +12,7 @@ MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var flag = false;
     var dbo = db.db('project');
+    //getting all available channels
     dbo.collection('user').find({}).toArray(function(err, res) {
         if (err) throw err;
         for (var user of res){
@@ -19,6 +20,7 @@ MongoClient.connect(url, function(err, db) {
                 for(var channel of user.channels){
 
                     if(channel.name === channelName){
+                        //Adding channel to user's list
                         MongoClient.connect(url, function(err, db) {
                             if (err) throw err;
                             var dbo = db.db('project');
@@ -28,6 +30,7 @@ MongoClient.connect(url, function(err, db) {
                                 db.close();
                             });
                         });
+                        //Adding user to channel's list
                         MongoClient.connect(url, function(err, db) {
                             var query = {userName: `${user.userName}`};
                             var index = user.channels.indexOf(channel);

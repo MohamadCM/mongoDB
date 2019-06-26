@@ -1,14 +1,15 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/';
-
-
 var username = 'Mohamad2';
 var query = {'userName': `${username}`};
+
+
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/';
 
 
 MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db('project');
+    //Checking if userName exists or not
     dbo.collection('user').findOne(query, function(err, res) {
         if (err) throw err;
         db.close();
@@ -25,6 +26,7 @@ MongoClient.connect(url, function(err, db) {
                                                                             query = {'userName':`${username}`, 'password': `${password}`, 'firstName':`${firstName}`, 'lastName':`${lastName}`,
                                                                                 'studentID':`${studentID}`, 'enteryYear': `${entryYear}`, 'degree':`${degree}`, 'friends':[`${username}`], 'channels':[],
                                                                                 following:[], messages:[]};
+                                                                            //Registering new user
                                                                             MongoClient.connect(url, function(err, db) {
                                                                                 if (err) throw err;
                                                                                 var dbo = db.db('project');

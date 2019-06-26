@@ -1,10 +1,10 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/';
-
 var userName = 'Mohamad';
 var channelName = 'ch1';
 var message = 'final new Message 2';
 
+
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/';
 var query = {userName: userName};
 
 MongoClient.connect(url, function(err, db) {
@@ -31,7 +31,7 @@ MongoClient.connect(url, function(err, db) {
                 for(var follower of channel.followers){
                     MongoClient.connect(url, function(err, db) {
                         query = {userName: `${follower}`};
-                        var messageQuery = {$addToSet: {messages: {message:`${message}`, type: 'channel',sender: `${channel.name}`}}};
+                        var messageQuery = {$addToSet: {channelMessages: {message:`${message}`,sender: `${channel.name}`}}};
                         if (err) throw err;
                         var dbo = db.db('project');
                         dbo.collection('user').updateOne(query, messageQuery, function(err, res) {

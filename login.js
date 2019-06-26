@@ -1,9 +1,9 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost:27017/';
-
-
 var username = 'Mohamad';
 var password = '1234';
+
+
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/';
 
 var query = {'UserName': `${username}`, 'passwrod': `${password}`};
 
