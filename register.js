@@ -23,7 +23,8 @@ MongoClient.connect(url, function(err, db) {
                                                                             var entryYear = '1396';
                                                                             var degree = 'bsc';
                                                                             query = {'userName':`${username}`, 'password': `${password}`, 'firstName':`${firstName}`, 'lastName':`${lastName}`,
-                                                                            'studentID':`${studentID}`, 'enteryYear': `${entryYear}`, 'degree':`${degree}`, 'friends':[`${username}`]};
+                                                                                'studentID':`${studentID}`, 'enteryYear': `${entryYear}`, 'degree':`${degree}`, 'friends':[`${username}`], 'channels':[],
+                                                                                following:[], messages:[]};
                                                                             MongoClient.connect(url, function(err, db) {
                                                                                 if (err) throw err;
                                                                                 var dbo = db.db('project');
