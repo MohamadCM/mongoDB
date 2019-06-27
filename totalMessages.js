@@ -13,6 +13,7 @@ MongoClient.connect(url, function(err, db) {
         {
             $project: {
                 userName: 1,
+                _id: 0,
                 totalMessages: { $cond: { if: { $isArray: "$userMessages" },
                         then: { $size: {$filter: {input:"$userMessages", as:'item',
                                     cond:{$eq:['$$item.sender',`${userName1}`]}}} }, else: "NA"} }

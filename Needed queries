@@ -1,0 +1,54 @@
+----->Get every thing
+db.user.find({});
+
+************************************************************************
+----->Get userMessages for "user = Mohamad2"
+db.getCollection('user').findOne({userName:'Mohamad2'},{_id:0,userName:0,
+    password:0,
+    firstName:0,
+    lastName:0,
+    studentID:0,
+    entryYear:0,
+    degree:0,
+    friends:0,
+    channels:0,
+    following:0,
+    channelMessages:0,
+    userMessages:{$slice: -3}})
+
+
+
+
+
+
+************************************************************************
+----> Get channel messages for "user = Mohamad"
+db.getCollection('user').findOne({userName:'Mohamad'},{_id:0,userName:0,
+    password:0,
+    firstName:0,
+    lastName:0,
+    studentID:0,
+    entryYear:0,
+    degree:0,
+    friends:0,
+    channels:0,
+    following:0,
+    userMessages:0,
+    channelMessages:{$slice: -5}})
+
+
+**********************************************************************
+----------> Total Messages  "Mohamad" sent to "Mohamad2"
+db.user.aggregate([{$match:{userName:'Mohamad2'},},
+        {
+            $project: {
+                userName: 1,
+                _id:0,
+                totalMessages: { $cond: { if: { $isArray: "$userMessages" },
+                then: { $size: {$filter: {input:"$userMessages", as:'item',
+                    cond:{$eq:['$$item.sender','Mohamad']}}} }, else: "NA"} }
+            }
+        }
+    ])
+
+
