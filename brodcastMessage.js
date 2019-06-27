@@ -17,7 +17,7 @@ MongoClient.connect(url, function(err, db) {
                 MongoClient.connect(url, function(err, db) {
                     var query = {userName: `${res.userName}`};
                     var index = res.channels.indexOf(channel);
-                    var channelQuery = {$addToSet: {['channels.' +index + '.messages']: `${message}`}};
+                    var channelQuery = {$push: {['channels.' +index + '.messages']: `${message}`}};
                     if (err) throw err;
                     var dbo = db.db('project');
                     // Inserting message in channel
@@ -31,7 +31,7 @@ MongoClient.connect(url, function(err, db) {
                 for(var follower of channel.followers){
                     MongoClient.connect(url, function(err, db) {
                         query = {userName: `${follower}`};
-                        var messageQuery = {$addToSet: {channelMessages: {message:`${message}`,sender: `${channel.name}`}}};
+                        var messageQuery = {$push: {channelMessages: {message:`${message}`,sender: `${channel.name}`}}};
                         if (err) throw err;
                         var dbo = db.db('project');
                         dbo.collection('user').updateOne(query, messageQuery, function(err, res) {

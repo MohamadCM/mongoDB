@@ -1,6 +1,6 @@
 var userName1 = 'Mohamad';
 var userName2 = 'Mohamad2';
-var message = 'Sending message';
+var message = 'Sending message4';
 
 
 var MongoClient = require('mongodb').MongoClient;
@@ -16,7 +16,7 @@ MongoClient.connect(url, function(err, db) {
         for(var friend of res.friends){
             if(friend === userName2){
                 query = {'userName': `${userName2}`};
-                var messageQuery = {$addToSet: {userMessages: {message:`${message}`,sender: `${userName1}`}}};
+                var messageQuery = {$push: {userMessages: {message:`${message}`,sender: `${userName1}`}}};
                 //Sending message
                 MongoClient.connect(url, function(err, db) {
                     if (err) throw err;
