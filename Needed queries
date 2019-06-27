@@ -1,6 +1,13 @@
 ----->Get every thing
 db.user.find({});
 
+
+************************************************************************
+------>Creating Indexes
+db.user.createIndex({'userName':1},{unique: true});
+
+
+
 ************************************************************************
 ----->Get userMessages for "user = Mohamad2"
 db.getCollection('user').findOne({userName:'Mohamad2'},{_id:0,userName:0,

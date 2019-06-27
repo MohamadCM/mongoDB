@@ -1,5 +1,5 @@
 var channelName = 'ch1';
-var userName = 'Mohamad';
+var userName = 'Mohamad2';
 
 
 var MongoClient = require('mongodb').MongoClient;

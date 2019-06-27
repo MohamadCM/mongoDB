@@ -1,4 +1,4 @@
-var username = 'Mohamad2';
+var username = 'Mohamad3';
 var query = {'userName': `${username}`};
 
 
@@ -18,14 +18,14 @@ MongoClient.connect(url, function(err, db) {
                                                     else
                                                         {
                                                                             var password = '1234';
-                                                                            var firstName = 'Mohamad2';
-                                                                            var lastName = 'CM2';
+                                                                            var firstName = 'Mohamad3';
+                                                                            var lastName = 'CM3';
                                                                             var studentID = '9631018';
                                                                             var entryYear = '1396';
                                                                             var degree = 'bsc';
                                                                             query = {'userName':`${username}`, 'password': `${password}`, 'firstName':`${firstName}`, 'lastName':`${lastName}`,
                                                                                 'studentID':`${studentID}`, 'enteryYear': `${entryYear}`, 'degree':`${degree}`, 'friends':[`${username}`], 'channels':[],
-                                                                                following:[], messages:[]};
+                                                                                following:[], channelMessages:[], userMessages:[]};
                                                                             //Registering new user
                                                                             MongoClient.connect(url, function(err, db) {
                                                                                 if (err) throw err;
