@@ -15,7 +15,6 @@ var option1 = {_id:0,userName:0,
     channels:0,
     following:0,
     channelMessages:0,
-    userMessages:0,
     userMessages:{$slice: -3}};
 
 var option2 = {_id:0,userName:0,
@@ -28,7 +27,6 @@ var option2 = {_id:0,userName:0,
     friends:0,
     channels:0,
     following:0,
-    channelMessages:0,
     userMessages:0,
     channelMessages:{$slice: -5}};
 
